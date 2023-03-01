@@ -41,36 +41,36 @@ const Home: NextPage<Props> = ({ posts }) => {
   )
 }
 
-// export const getServerSideProps: GetServerSideProps<Props> = async () => {
-//   const res = await fetch('https://jsonplaceholder.typicode.com/posts')
-//   const posts = await res.json()
+export const getServerSideProps: GetServerSideProps<Props> = async () => {
+  const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+  const posts = await res.json()
 
-//   return {
-//     props: {
-//       posts,
-//     },
-//   }
-// }
-
-export const getStaticProps: GetStaticProps<Props> = async () => {
   return {
     props: {
-      posts: [
-        {
-          userId: 1,
-          id: 1,
-          title: 'test',
-          body: 'test',
-        },
-        {
-          userId: 2,
-          id: 2,
-          title: 'test2',
-          body: 'test2',
-        },
-      ],
+      posts,
     },
   }
 }
+
+// export const getStaticProps: GetStaticProps<Props> = async () => {
+//   return {
+//     props: {
+//       posts: [
+//         {
+//           userId: 1,
+//           id: 1,
+//           title: 'test',
+//           body: 'test',
+//         },
+//         {
+//           userId: 2,
+//           id: 2,
+//           title: 'test2',
+//           body: 'test2',
+//         },
+//       ],
+//     },
+//   }
+// }
 
 export default Home
