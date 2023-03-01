@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
-import type { NextPage, GetServerSideProps } from 'next'
+import type { NextPage, GetServerSideProps, GetStaticProps } from 'next'
 
 type fetchData = {
   userId: number
@@ -41,13 +41,34 @@ const Home: NextPage<Props> = ({ posts }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async () => {
-  const res = await fetch('https://jsonplaceholder.typicode.com/posts')
-  const posts = await res.json()
+// export const getServerSideProps: GetServerSideProps<Props> = async () => {
+//   const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+//   const posts = await res.json()
 
+//   return {
+//     props: {
+//       posts,
+//     },
+//   }
+// }
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
   return {
     props: {
-      posts,
+      posts: [
+        {
+          userId: 1,
+          id: 1,
+          title: 'test',
+          body: 'test',
+        },
+        {
+          userId: 2,
+          id: 2,
+          title: 'test2',
+          body: 'test2',
+        },
+      ],
     },
   }
 }
