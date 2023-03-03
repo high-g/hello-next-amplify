@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
-import type { NextPage, GetServerSideProps, GetStaticProps } from 'next'
+import type { NextPage, GetServerSideProps } from 'next'
 
 type fetchData = {
   userId: number
@@ -24,7 +24,6 @@ const Home: NextPage<Props> = ({ posts }) => (
     <main className={styles.main}>
       <h1>Hello world</h1>
       <p>hogehoge</p>
-
       {posts.map((item, key) => (
         <div key={key}>
           <h2>{item.title}</h2>
@@ -36,36 +35,15 @@ const Home: NextPage<Props> = ({ posts }) => (
   </>
 )
 
-export const getServerSideProps: GetServerSideProps<Props> = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
+  // 野良APIから情報を取得
   const res = await fetch('https://jsonplaceholder.typicode.com/posts')
   const posts = await res.json()
-
   return {
     props: {
       posts,
     },
   }
 }
-
-// export const getStaticProps: GetStaticProps<Props> = async () => {
-//   return {
-//     props: {
-//       posts: [
-//         {
-//           userId: 1,
-//           id: 1,
-//           title: 'test',
-//           body: 'test',
-//         },
-//         {
-//           userId: 2,
-//           id: 2,
-//           title: 'test2',
-//           body: 'test2',
-//         },
-//       ],
-//     },
-//   }
-// }
 
 export default Home
