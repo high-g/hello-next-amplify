@@ -23,6 +23,7 @@ const Home: NextPage<Props> = ({ posts }) => (
     </Head>
     <main className={styles.main}>
       <h1>Hello world</h1>
+      <p>hogehoge</p>
 
       {posts.map((item, key) => (
         <div key={key}>
